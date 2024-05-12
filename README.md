@@ -60,4 +60,6 @@ Most columns were able to be salvaged, using outside data, however some columns 
 Somalia, North Korea and Sudan were also removed from the dataset due to the many NaN values, as well as not being able to find the missing data from the databases of the UNICEF, WHO, and the World Bank.
 
 # Modeling
-h
+Multiple regression is a statistical method used to analyze the relationship between a dependent variable and two or more independent variables. It estimates how changes in the independent variables are associated with changes in the dependent variable, enabling predictions and insights into complex relationships.
+
+In our life expectancy project, we utilize Multiple Linear Regression to examine the relationship between various significant coefficents (p<.05) and life expectancy. 
