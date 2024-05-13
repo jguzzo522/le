@@ -62,4 +62,23 @@ Somalia, North Korea and Sudan were also removed from the dataset due to the man
 # Modeling
 Multiple regression is a statistical method used to analyze the relationship between a dependent variable and two or more independent variables. It estimates how changes in the independent variables are associated with changes in the dependent variable, enabling predictions and insights into complex relationships.
 
-In our life expectancy project, we utilize Multiple Linear Regression to examine the relationship between various significant coefficents (p<.05) and life expectancy. 
+In our life expectancy project, we utilize Multiple Linear Regression to examine the relationship between various significant coefficients (p < .05) — including percentage expenditure, hepatitis B, thinness 5-9 years, schooling, GDP, improved water on premises, improved water when needed, improved free from contamination water, piped water, safely managed water, surface water, unimproved water, adult mortality, under-five deaths, infant deaths, measles, and polio.
+
+Model Evaluation:
+
+R-squared:  R-squared value is 0.673, indicating that approximately 67.3% of the variance in life expectancy is explained by the independent variables in the model.
+
+Adjusted R-squared: Adjusted R-squared value is 0.671, indicating a slight adjustment from the R-squared value.
+
+F-statistic: This statistic tests the overall significance of the regression model. It assesses whether the independent variables, as a group, have a statistically significant effect on the dependent variable. The F-statistic is 346.1, with a corresponding p-value of 0.00, suggesting that the regression model as a whole is statistically significant.
+
+Coefficents:
+
+Schooling (Coefficient = 2.0003): For every year of schooling increased, life expectancy increases by approximately 2.0003 years
+
+Underfive Deaths (Coefficient = 0.0786): Every additional under-five death per population, life expectancy decreases by about 0.0786 years
+
+Improved Water on Premises (Coefficient = 0.1154): Having improved water on premises is associated with an increase in life expectancy by approximately 0.1154 years
+
+Adult Mortality (Coefficient = -0.0387): Increase in adult mortality rate ( per 1000 population), life expectancy decreases by approximately 0.0387 years
+
