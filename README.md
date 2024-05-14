@@ -171,6 +171,6 @@ Reccommendations
 
 ├── [README.md](https://github.com/jguzzo522/le/blob/main/README.md)
 
-├── [le notebook](https://github.com/jguzzo522/le/blob/main/le.ipynb).
+├── [le notebook](https://github.com/jguzzo522/le/blob/main/le.ipynb)
 
 └── [lifeexpectancyslides.pdf](https://github.com/jguzzo522/le/blob/main/lifeexpectancy.pdf)
