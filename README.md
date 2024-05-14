@@ -1,12 +1,12 @@
 # Business Understanding
 
-Life expectancy throughout the world varies drastically amongst countries due to several major factors, including healthcare, education and financial resources. This project predicts variables that affect the increase or decrease of life expectancy. Through the modeling of the project recommendations will be made to inform the United Nations (UN) with data that can lead to developing interventions to increase life expectancy.
+Life expectancy throughout the world varies drastically amongst countries due to several major factors including healthcare, education, and financial resources. This project predicts variables that affect the increase or decrease of life expectancy. Recommendations will be made using modeling to inform the United Nations (UN) with data that can lead to developing interventions to increase life expectancy.
 
 ![Screen Shot 2024-05-07 at 11 30 22 PM](https://github.com/jguzzo522/le/assets/75549456/5f994a7b-2aaf-4114-ad80-d71a7aec1032)
 
 # Data Understanding
 
-The dataset is from the World Organization of Health (WHO). In the dataset there are 193 countries, or al the countries in the UN, which contains data from 2000-2015. There are 22 columns and 2928 rows. The target variable in this project will be life expectancy.
+The dataset is from the World Health Organization (WHO). In the original dataset that contains data from 2000-2015, there were 193 countries, or all the countries in the UN. There were 22 columns and 2928 rows. The target variable in this project will be life expectancy. After removing outliers and missing data, and adding a datasheet for drinking water, there were 179 countires, 2,880 rows and 32 columns.
 
 The intial columns were from a dataset from [Kagel]( https://www.kaggle.com/datasets/kumarajarshi/life-expectancy-who?resource=download), however additional data was added for drinking resources from [UNICEF Water](https://data.unicef.org/sdgs/goal-6-clean-water-sanitation/). 
 
@@ -60,25 +60,53 @@ Most columns were able to be salvaged, using outside data, however some columns 
 Somalia, North Korea and Sudan were also removed from the dataset due to the many NaN values, as well as not being able to find the missing data from the databases of the UNICEF, WHO, and the World Bank.
 
 # Modeling
-Multiple regression is a statistical method used to analyze the relationship between a dependent variable and two or more independent variables. It estimates how changes in the independent variables are associated with changes in the dependent variable, enabling predictions and insights into complex relationships.
+Multiple Linear Regression is a statistical method used to analyze the relationship between a dependent variable and two or more independent variables. It estimates how changes in the independent variables are associated with changes in the target variable, enabling predictions and insights into complex relationships.
 
-In our life expectancy project, we utilize Multiple Linear Regression to examine the relationship between various significant coefficients (p < .05) — including percentage expenditure, hepatitis B, thinness 5-9 years, schooling, GDP, improved water on premises, improved water when needed, improved free from contamination water, piped water, safely managed water, surface water, unimproved water, adult mortality, under-five deaths, infant deaths, measles, and polio.
+In this project, we utilize Multiple Linear Regression to examine the relationship between various factors and life expectancy (target variable). Key findings from the regression analysis include:
 
-Model Evaluation:
+# Model Evaluation:
 
-R-squared:  R-squared value is 0.673, indicating that approximately 67.3% of the variance in life expectancy is explained by the independent variables in the model.
+- **Model Fit**: The model explains approximately 51% of the variance in life expectancy, as indicated by the medium R-squared value of 0.510.
+- **Overall Significance**: The model is highly significant (F-statistic = 186.5, p < 0.00), suggesting that the included predictors collectively contribute to explaining life expectancy.
 
-Adjusted R-squared: Adjusted R-squared value is 0.671, indicating a slight adjustment from the R-squared value.
+The bar chart indicates which coefficents have the largest impact on life expectancy. The coefficents 'Alcohol', and 'schooling' had the largest impact on life expectancy.
 
-F-statistic: This statistic tests the overall significance of the regression model. It assesses whether the independent variables, as a group, have a statistically significant effect on the dependent variable. The F-statistic is 346.1, with a corresponding p-value of 0.00, suggesting that the regression model as a whole is statistically significant.
+Key Factors
 
-Coefficents:
+- **Alcohol**: (-0.3) indicates that for every liter consumed per capita, we can expect the country to have around 0.3 less years of life expectancy.
 
-Schooling (Coefficient = 2.0003): For every year of schooling increased, life expectancy increases by approximately 2.0003 years
+- **Schooling**: (3.2) indicates that for each additional year of school a country can expect to see an additional 3.2 years added to the life expectancy.
+- 
+![Screen Shot 2024-05-13 at 11 22 40 PM](https://github.com/jguzzo522/le/assets/75549456/336f430b-c2b9-4269-a46e-b38ae38eac83)
 
-Underfive Deaths (Coefficient = 0.0786): Every additional under-five death per population, life expectancy decreases by about 0.0786 years
+![Screen Shot 2024-05-13 at 11 23 03 PM](https://github.com/jguzzo522/le/assets/75549456/a56c9491-37ca-4511-885b-b020f4d67923)
 
-Improved Water on Premises (Coefficient = 0.1154): Having improved water on premises is associated with an increase in life expectancy by approximately 0.1154 years
+Homoscedasticity Testing was conducted to test for normality. The Q-Q plot indicates that the model is following a normal distribution except on its uper tail. The tail indicate that the model deviates from a normal distribution due to its maximum values. This could indicate there are outliers in the data. The Anderson-Darling statistic of 19.43 indicates the model is mostly normally distributed. 
 
-Adult Mortality (Coefficient = -0.0387): Increase in adult mortality rate ( per 1000 population), life expectancy decreases by approximately 0.0387 years
+![Screen Shot 2024-05-13 at 11 23 47 PM](https://github.com/jguzzo522/le/assets/75549456/f185c05b-aba3-4f15-b52e-f9a228564aa7)
 
+# Time Series Modeling 
+
+Predictive time series modeling was applied the life expectancy data to forecast future trends. A Prophet forecasting model to predict life expectancy up to the year 2025. The model was fitted with data that includes yearly life expectancy values for all the countires in the df_cleaned dataset. The model predicts that life expectancy will increase through the year 2025(last year selected). In this analysis life expectancy is expected to grow by over 3 years globally. 
+
+![Screen Shot 2024-05-13 at 11 27 41 PM](https://github.com/jguzzo522/le/assets/75549456/964cd9e7-bd04-4b40-8cdf-604300b1a314)
+
+# Time Series Africa vs Europe
+
+Time Series modeling was conducted to compare the life expectancy for Africa and Europe. In order to run this time series, the appropriate countries had to be defined into Africa and Europe. 
+
+After defining Africa and Europe, a time-series was for forecasted and the plot shows the large difference of life expectancy between Europe and Africa. Africa in 2000 was expected to live 20 years less than the average European country. However, in 2025 the difference is about 10 years.
+
+In this timeseries a rolling mean was used to smooth the life expectancy data, which helps to reduce short-term fluctuations.
+
+![Screen Shot 2024-05-13 at 11 36 23 PM](https://github.com/jguzzo522/le/assets/75549456/934db3c6-550a-4593-9fe6-ed1471f55500)
+
+# Time Series Modeling Including Schooling
+
+The mean was calculated for the number of school years in the entire dataset, Europe, and Africa. Africa was then increased to match the average European School years. Once the school years were updated a Time-series model was ran to predict life expectancy for Africa. 
+
+The chart below shows that the life expectancy is predicted to increase by around 6 years from 2016-2025, if the schooling years are increased to match the European school years. 
+
+This indicates that the UN should greatly increase funding for schools in African countries, in attempt to increase life expectancy. 
+
+![Screen Shot 2024-05-13 at 11 28 40 PM](https://github.com/jguzzo522/le/assets/75549456/fd3bbdfd-3c50-47e5-a08f-eeddb9c0cf6f)
