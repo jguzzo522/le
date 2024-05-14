@@ -110,3 +110,9 @@ The chart below shows that the life expectancy is predicted to increase by aroun
 This indicates that the UN should greatly increase funding for schools in African countries, in attempt to increase life expectancy. 
 
 ![Screen Shot 2024-05-13 at 11 28 40 PM](https://github.com/jguzzo522/le/assets/75549456/fd3bbdfd-3c50-47e5-a08f-eeddb9c0cf6f)
+
+# Conclusion
+## Evaluation of Significant Multiple Linear Regression Model
+## Limitations of Model
+## Time Series Africa Schooling
+# Limitations and Next Steps
