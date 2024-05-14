@@ -112,7 +112,65 @@ This indicates that the UN should greatly increase funding for schools in Africa
 ![Screen Shot 2024-05-13 at 11 28 40 PM](https://github.com/jguzzo522/le/assets/75549456/fd3bbdfd-3c50-47e5-a08f-eeddb9c0cf6f)
 
 # Conclusion
-## Evaluation of Significant Multiple Linear Regression Model
-## Limitations of Model
+
+![Screen Shot 2024-05-14 at 5 09 35 PM](https://github.com/jguzzo522/le/assets/75549456/fba8d7ed-a6c8-4d86-829c-73cbb31fe6ff)
+
+## Model Evaluation
+
+The significant model, although having a lower adjusted R-squared and F-statistic compared to the initial model, signifies a reduction in the explanatory power and overall significance of the model. This decrease is primarily due to the removal of several independent variables. However, despite these reductions, the refined model presents a notable advantage—it comprises only statistically significant coefficients with p-values less than 0.05. This suggests that the variables retained in the refined model have a stronger association with the dependent variable, life expectancy, and provide more reliable insights into its determinants.
+
+The Anderson-Darling test statistic for both models assesses the normality of residuals. A lower Anderson-Darling test statistic indicates a better fit to the normal distribution, implying stronger evidence for normality. In this comparison, the refined model exhibits a substantially lower Anderson-Darling test statistic, suggesting a better fit to the normal distribution for its residuals. This signifies that the residuals of the refined model are more closely aligned with the assumptions of normality, enhancing the model's reliability for statistical inference and prediction.
+
+In summary, while the refined model sacrifices some overall explanatory power and significance, its focus on statistically significant coefficients and improved normality of residuals enhances its robustness and reliability for understanding and predicting life expectancy variations.
+
+
+| Model                        | Initial                   | Significant Model        |
+|------------------------------|---------------------------|--------------------------|
+| Adjusted R-squared           | 0.953                     | 0.510                    |
+| F-statistic                  | 2232.0                    | 228.2                    |
+| Anderson-Darling Test Stat   | 68.20                     | 19.43                    |
+
+## Limitations of the Model¶
+Although, the model only deals with significant coefficients, the R- squared, shows that the model only accounts for 51% of the variance in life expectancy. This indicates that 50% of the variance is not explained by this model.
+
+This model also has questionable data, such as the water resource groupings. This model indicates that unimproved water sources produce a positive effect on life expectancy, while water sources free from contamination actually decrease life expectancy. From general knowledge, we can assume this is incorrect. This indicates that the data about drinkable water may need to be adjusted, and or reviewed more throughly. It’s possible that some of the water columns should have been combined, or deleted from this project.
+
+Another limitation for this model is that some of the original columns, such as HIV/AIDS were removed from the dataset. It’s possible that this missing data could explain more of the variance in life expectancy.
+
+One further limitation was the data itself. Life expectancy could have been analyzed in different manner. For instance, removal of outliers may have been appropriate. For instance, Haiti had one very low life expectancy year in 2010 due to the earthquake that killed many of the population. However, the year before and after were both in the 50's. It may have been helpful to remove more outliers to make a more reliable dataset
 ## Time Series Africa Schooling
-# Limitations and Next Steps
+
+A time series analysis was run using the prophet package. In this Timeseries analyis schooling was added to predict the life expectancy for Africa. Schooling was added becasue in the previous Multiple Linear Regression model, schoolng was one of the most important coefficets for increasing life expectancy. 
+
+All African countires and European countires were catagoreized into their correct continents. After this catagorization was completed, the average for schooling years in the UN, Europe and Africa was calculated. It was found that Africa averaged around 10 schooling years, while Europe averaged around 20. Europe averaged more schooling years than the mean of the world which was around 15. 
+
+Africa was then increased to match the average European School years. Once the school years were updated a Time-series model was ran to predict life expectancy for Africa. 
+
+This model showed that when increasing the number of schooling years to match that of Europe, life expactancy greatly increased in Africa by around 6 years.
+
+# Limitations, Next Steps, and Reccomendations
+
+Altough this project looked at many important variables, there were many not considered. The next project could look at the years 2016-2023. The data does not have to be limited to just UN countires. Other variables could be added such as access to healthcare, or post 2020 data on Covid's impact on life expectancy.
+
+Other area of study could include the diffrences in gender and life expectancy. Or how the ongoing wars in Ukraine and Isreal are impacting life expectancy. There were also columns in the water catagory that included access to water in hospitals, or personal hegine. These topics could be explored. 
+
+More data on HIV/AIDs and other dieseases can also be analyzed.
+
+The next steps should be for the UN to provide further data for analuzaion. 
+
+Reccommendations
+
+- **Increase Schooling**
+- **Decrease Alcohol Consumption**
+- **Focus on developing countries**
+- **Ensure access to atleast basic water**
+
+# Repo Sturcture
+ 
+├── gitgnore
+
+├── [README.md](https://github.com/jguzzo522/le/blob/main/README.md)
+
+├── [le notebook](https://github.com/jguzzo522/le/blob/main/le.ipynb).
+
+└── [lifeexpectancyslides.pdf](https://github.com/jguzzo522/le/blob/main/lifeexpectancy.pdf)
