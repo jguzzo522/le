@@ -59,31 +59,38 @@ Most columns were able to be salvaged, using outside data, however some columns 
 
 Somalia, North Korea and Sudan were also removed from the dataset due to the many NaN values, as well as not being able to find the missing data from the databases of the UNICEF, WHO, and the World Bank.
 
-# Modeling
+# Modeling 
+
 Multiple Linear Regression is a statistical method used to analyze the relationship between a dependent variable and two or more independent variables. It estimates how changes in the independent variables are associated with changes in the target variable, enabling predictions and insights into complex relationships.
 
-In this project, we utilize Multiple Linear Regression to examine the relationship between various factors and life expectancy (target variable). Key findings from the regression analysis include:
+This forth model only focused on developing nations. In an effort to better understand what coefficients impact life expectancy for developing nations, developed nations were removed from the model.
 
-# Model Evaluation:
+In this project, we utilized Multiple Linear Regression to examine the relationship between various factors and life expectancy (target variable). Key findings from the regression analysis include:
 
-- **Model Fit**: The model explains approximately 51% of the variance in life expectancy, as indicated by the medium R-squared value of 0.510.
-- **Overall Significance**: The model is highly significant (F-statistic = 186.5, p < 0.00), suggesting that the included predictors collectively contribute to explaining life expectancy.
+- **Model Fit**: The model explains approximately 97% of the variance in life expectancy, as indicated by the R-squared value of 0.970.
+- **Overall Significance**: The model is highly significant (F-statistic = 5754, p < 0.00), suggesting that the included predictors collectively contribute to variations in life expectancy.
 
-The bar chart indicates which coefficents have the largest impact on life expectancy. The coefficents 'Alcohol', and 'schooling' had the largest impact on life expectancy.
+The bar chart indicates which coefficients have the largest impact on life expectancy. The coefficients 'Alcohol' , 'under five deaths' and 'Schooling' had the largest impact on life expectancy. In the previous two models 'Alcohol was found to decrease life expectancy, however in this model it was shown to increase life expectancy. It is important to note that because some developing nations are religious, their cultural beliefs forbid them from drinking alcohol. For this reason, and the inconsistency with the previous models, we decided to focus on total expenditure as our third most important coefficient. 
+
+![Screen Shot 2024-05-17 at 10 09 53 AM](https://github.com/jguzzo522/le/assets/75549456/4af39d48-b6ba-430c-96d0-29341038ba6a)
 
 Key Factors
+- **Total Expenditure**: (0.0491) indicates that for each 1 percentage point increase in the total government expenditure spent on healthcare, the life expectancy is expected to increase by approximately 0.0491 years, holding all other variables constant.
 
-- **Alcohol**: (-0.3) indicates that for every liter consumed per capita, we can expect the country to have around 0.3 less years of life expectancy.
+- **Under Five Deaths**: (-0.0703) indicates each additional death per 1,000 population in the under-five mortality rate, the life expectancy is expected to decrease by approximately 0.0703 years, holding all other variables constant
 
-- **Schooling**: (3.2) indicates that for each additional year of school a country can expect to see an additional 3.2 years added to the life expectancy.
-- 
-![Screen Shot 2024-05-13 at 11 22 40 PM](https://github.com/jguzzo522/le/assets/75549456/336f430b-c2b9-4269-a46e-b38ae38eac83)
+- **Schooling**: (0.1704) indicates that for each additional year of schooling, a country can expect to see an additional .17 years added to the life expectancy. 
+
+
+This model has only significant coefficients (p < .05).
 
 ![Screen Shot 2024-05-13 at 11 23 03 PM](https://github.com/jguzzo522/le/assets/75549456/a56c9491-37ca-4511-885b-b020f4d67923)
 
-Homoscedasticity Testing was conducted to test for normality. The Q-Q plot indicates that the model is following a normal distribution except on its uper tail. The tail indicate that the model deviates from a normal distribution due to its maximum values. This could indicate there are outliers in the data. The Anderson-Darling statistic of 19.43 indicates the model is mostly normally distributed. 
 
-![Screen Shot 2024-05-13 at 11 23 47 PM](https://github.com/jguzzo522/le/assets/75549456/f185c05b-aba3-4f15-b52e-f9a228564aa7)
+Homoscedasticity Testing was conducted to test for normality. The Q-Q plot indicates that the model t following a normal distribution, except on its upper tail. The tail indicate that the model deviates from a normal distribution due to its maximum values. This could indicate that there are outliers in the maximum values. 
+
+![Screen Shot 2024-05-17 at 10 11 15 AM](https://github.com/jguzzo522/le/assets/75549456/91d01c27-0637-4933-87b3-2dc917f582c3)
+
 
 # Time Series Modeling 
 
@@ -117,27 +124,42 @@ This indicates that the UN should greatly increase funding for schools in Africa
 
 ## Model Evaluation
 
-The significant model, although having a lower adjusted R-squared and F-statistic compared to the initial model, signifies a reduction in the explanatory power and overall significance of the model. This decrease is primarily due to the removal of several independent variables. However, despite these reductions, the refined model presents a notable advantage—it comprises only statistically significant coefficients with p-values less than 0.05. This suggests that the variables retained in the refined model have a stronger association with the dependent variable, life expectancy, and provide more reliable insights into its determinants.
+The model selected was the 4th model Developing Countries with Significant Coefficients. Using Multiple Linear Regression as a statistical method to analyze the relationship between the target variable Life Expectancy, with all other variables, predictions and insights were made.  The R-Squared, while the second lowest of the entire project, was still very high at 0.970. This indicates that 97% of the variance in life expectancy is explained by this model.
 
-The Anderson-Darling test statistic for both models assesses the normality of residuals. A lower Anderson-Darling test statistic indicates a better fit to the normal distribution, implying stronger evidence for normality. In this comparison, the refined model exhibits a substantially lower Anderson-Darling test statistic, suggesting a better fit to the normal distribution for its residuals. This signifies that the residuals of the refined model are more closely aligned with the assumptions of normality, enhancing the model's reliability for statistical inference and prediction.
+This specific model only focused on what could increase life expectancy in developing nations. This was instrumental in the analysis, because the data indicates that developing nations have a much lower life expectancy than do developed nations. This model also only focused on significant coefficients (p <.05). 
 
-In summary, while the refined model sacrifices some overall explanatory power and significance, its focus on statistically significant coefficients and improved normality of residuals enhances its robustness and reliability for understanding and predicting life expectancy variations.
+The model showed many important coefficients:
+
+Key Factors
+- **Total Expenditure**: (0.0491) indicates that for each 1 percentage point increase in the total government expenditure spent on healthcare, the life expectancy is expected to increase by approximately 0.0491 years, holding all other variables constant.
+
+- **Under Five Deaths**: (-0.0703) indicates each additional death per 1,000 population in the under-five mortality rate, the life expectancy is expected to decrease by approximately 0.0703 years, holding all other variables constant
+
+- **Schooling**: (0.1704) indicates that for each additional year of schooling, a country can expect to see an additional .17 years added to the life expectancy. 
+
+Homoscedasticity Testing was conducted to test for normality. The Q-Q plot indicates that the model t following a normal distribution, except on its upper tail. The tail indicate that the model deviates from a normal distribution due to its maximum values. This could indicate that there are outliers in the maximum values. 
+
+| Model | Description                                       | R-squared | Adjusted R-squared | F-statistic |
+|-------|---------------------------------------------------|-----------|--------------------|-------------|
+| 1     | Basic Model                                       | 0.953     | 0.953              | 2232        |
+| 2     | Significant Coefficients                          | 0.991     | 0.991              | 20520       |
+| 3     | Developing Countries Only                         | 0.971     | 0.971              | 3554        |
+| 4     | Developing Countries with Significant Coefficients| 0.970     | 0.970              | 5754        |
+
+## Reccommendations
 
 
-| Model                        | Initial                   | Significant Model        |
-|------------------------------|---------------------------|--------------------------|
-| Adjusted R-squared           | 0.953                     | 0.510                    |
-| F-statistic                  | 2232.0                    | 228.2                    |
-| Anderson-Darling Test Stat   | 68.20                     | 19.43                    |
+Based on this project, it could be suggested that the UN should look to increase education (average years of schooling) in developing nations, as well as encourage nations to spend more of their total expenditure on healthcare. This is where the UN can also allocate additional resources to ensure money is spent in the healthcare field. Additionally under five deaths is an issue in developing nations. The UN should help ensure that hospitals, have correct funding, the approrpriate healthcare can be performed on children. These improvements would have positive impacts on average life expectancy.
 
-## Limitations of the Model¶
-Although, the model only deals with significant coefficients, the R- squared, shows that the model only accounts for 51% of the variance in life expectancy. This indicates that 50% of the variance is not explained by this model.
+## Limitations of the Model
+A limitation for this model is that some of the original columns, such as HIV/AIDS were removed from the dataset. It’s possible that this missing data could explain more of the variance in life expectancy. 
 
-This model also has questionable data, such as the water resource groupings. This model indicates that unimproved water sources produce a positive effect on life expectancy, while water sources free from contamination actually decrease life expectancy. From general knowledge, we can assume this is incorrect. This indicates that the data about drinkable water may need to be adjusted, and or reviewed more throughly. It’s possible that some of the water columns should have been combined, or deleted from this project.
+One further limitation was the data itself.  Life expectancy could have been analyzed in different manner. For instance, removal of outliers may have been appropriate. For instance, Haiti had one very low life expectancy year in 2010 due to the earthquake that killed many of the population. However, the year before and after were both in the 50's. It may have been helpful to remove more outliers to make a more reliable dataset.
 
-Another limitation for this model is that some of the original columns, such as HIV/AIDS were removed from the dataset. It’s possible that this missing data could explain more of the variance in life expectancy.
+In this model all developed nations were removed, which could be a limitation because we could also explore improving life expectancy for developed nations. 
 
 One further limitation was the data itself. Life expectancy could have been analyzed in different manner. For instance, removal of outliers may have been appropriate. For instance, Haiti had one very low life expectancy year in 2010 due to the earthquake that killed many of the population. However, the year before and after were both in the 50's. It may have been helpful to remove more outliers to make a more reliable dataset
+
 ## Time Series Africa Schooling
 
 A time series analysis was run using the prophet package. In this Timeseries analyis schooling was added to predict the life expectancy for Africa. Schooling was added becasue in the previous Multiple Linear Regression model, schoolng was one of the most important coefficets for increasing life expectancy. 
@@ -148,7 +170,7 @@ Africa was then increased to match the average European School years. Once the s
 
 This model showed that when increasing the number of schooling years to match that of Europe, life expactancy greatly increased in Africa by around 6 years.
 
-# Limitations, Next Steps, and Reccomendations
+## Limitation and Next Steps,
 
 Altough this project looked at many important variables, there were many not considered. The next project could look at the years 2016-2023. The data does not have to be limited to just UN countires. Other variables could be added such as access to healthcare, or post 2020 data on Covid's impact on life expectancy.
 
@@ -158,12 +180,6 @@ More data on HIV/AIDs and other dieseases can also be analyzed.
 
 The next steps should be for the UN to provide further data for analuzaion. 
 
-Reccommendations
-
-- **Increase Schooling**
-- **Decrease Alcohol Consumption**
-- **Focus on developing countries**
-- **Ensure access to atleast basic water**
 
 # Repo Sturcture
  
