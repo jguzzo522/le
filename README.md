@@ -47,7 +47,7 @@ The bottom 5 countries with the lowest average life expectancy were Sierra Leone
 ![Screen Shot 2024-05-11 at 9 09 59 PM](https://github.com/jguzzo522/le/assets/75549456/d7ef50c2-eaad-4565-a182-1796326ebf6e)
 
 
-# Data Preperation
+#  Data Preparation
 
 The initial step in the data preparation was to search for NAN values, and place holders in the life expectancy column.
 
