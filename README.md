@@ -12,7 +12,7 @@ Life expectancy throughout the world varies drastically amongst countries due to
 
 # Data Understanding
 
-The dataset is from the World Health Organization (WHO). In the original dataset that contains data from 2000-2015, there were 193 countries, or all the countries in the UN. There were 22 columns and 2928 rows. The target variable in this project will be life expectancy. After removing outliers and missing data, and adding a datasheet for drinking water, there were 179 countires, 2,880 rows and 32 columns.
+The dataset is from the World Health Organization (WHO). In the original dataset that contains data from 2000-2015, there were 193 countries, or all the countries in the UN. There were 22 columns and 2928 rows. The target variable in this project will be life expectancy. After removing outliers and missing data, and adding a dataset for drinking water, there were 179 countries, 2,880 rows and 32 columns.
 
 The intial columns were from a dataset from [Kaggle]( https://www.kaggle.com/datasets/kumarajarshi/life-expectancy-who?resource=download), however additional data was added for drinking resources from [UNICEF Water](https://data.unicef.org/sdgs/goal-6-clean-water-sanitation/). 
 
@@ -59,7 +59,7 @@ The initial step in the data preparation was to search for NAN values, and place
 
 There were 10 NaN values, upon further investigation as to what countries had these NaN values, Cook Islands, Dominica, Marshall Islands, Monaco, Nauru, Niue, Palau, Saint Kitts and Nevis, San Marino, and Tuvalu were identified. Further investigation into these countries, indicated substantial missing data in many columns for the year 2013. The decision was made to remove these 10 countries from further analysis for year 2013.
 
-Every column was throughly explored, and missing values, and place holders were removed and or changed. In addition, the orginal dataset had a large amount of missing data. Due to this issue, more data was merged from database websites from UNICEF, The WHO, and the World Bank. 
+Every column was throughly explored, and missing values, and place holders were removed and or changed. In addition, the original dataset had a large amount of missing data. Due to this issue, more data was merged from database websites from UNICEF, The WHO, and the World Bank. 
 
 Most columns were able to be salvaged, using outside data, however some columns were removed from the database. Diphtheria, HIV/AIDS, BMI and Income Composition of Resources were the columns that were removed from this project.
 
@@ -122,7 +122,7 @@ The chart below shows that the life expectancy is predicted to increase by aroun
 
 This indicates that the UN should greatly increase funding for schools in African countries, in attempt to increase life expectancy. 
 
-![Screen Shot 2024-05-13 at 11 28 40 PM](https://github.com/jguzzo522/le/assets/75549456/fd3bbdfd-3c50-47e5-a08f-eeddb9c0cf6f)
+![Screen Shot 2024-05-20 at 11 37 36 AM](https://github.com/jguzzo522/le/assets/75549456/38879498-6c27-4cbd-92b4-2bfbec200bc6)
 
 # Conclusion
 
@@ -152,39 +152,33 @@ Homoscedasticity Testing was conducted to test for normality. The Q-Q plot indic
 | 3     | Developing Countries Only                         | 0.971     | 0.971              | 3554        |
 | 4     | Developing Countries with Significant Coefficients| 0.970     | 0.970              | 5754        |
 
-## Reccommendations
+## Recommendations
 
-
-Based on this project, it could be suggested that the UN should look to increase education (average years of schooling) in developing nations, as well as encourage nations to spend more of their total expenditure on healthcare. This is where the UN can also allocate additional resources to ensure money is spent in the healthcare field. Additionally under five deaths is an issue in developing nations. The UN should help ensure that hospitals, have correct funding, the approrpriate healthcare can be performed on children. These improvements would have positive impacts on average life expectancy.
+Based on this project, it could be suggested that the UN should look to increase education (average years of schooling) in developing nations, as well as encourage nations to spend more of their total expenditure on healthcare. This is where the UN can also allocate additional resources to ensure money is spent in the healthcare field. Additionally under five deaths is an issue in developing nations. The UN should help ensure that hospitals, have correct funding, the appropriate healthcare can be performed on children. These improvements would have positive impacts on average life expectancy.
 
 ## Limitations of the Model
+
 A limitation for this model is that some of the original columns, such as HIV/AIDS were removed from the dataset. It’s possible that this missing data could explain more of the variance in life expectancy. 
 
 One further limitation was the data itself.  Life expectancy could have been analyzed in different manner. For instance, removal of outliers may have been appropriate. For instance, Haiti had one very low life expectancy year in 2010 due to the earthquake that killed many of the population. However, the year before and after were both in the 50's. It may have been helpful to remove more outliers to make a more reliable dataset.
 
-In this model all developed nations were removed, which could be a limitation because we could also explore improving life expectancy for developed nations. 
-
-One further limitation was the data itself. Life expectancy could have been analyzed in different manner. For instance, removal of outliers may have been appropriate. For instance, Haiti had one very low life expectancy year in 2010 due to the earthquake that killed many of the population. However, the year before and after were both in the 50's. It may have been helpful to remove more outliers to make a more reliable dataset
-
 ## Time Series Africa Schooling
 
-A time series analysis was run using the prophet package. In this Timeseries analyis schooling was added to predict the life expectancy for Africa. Schooling was added becasue in the previous Multiple Linear Regression model, schoolng was one of the most important coefficets for increasing life expectancy. 
+A time series analysis was run using the prophet package. In this Time-series analysis schooling was added to predict the life expectancy for Africa. Schooling was added because in the previous Multiple Linear Regression model, schooling was one of the most important coefficients for increasing life expectancy. 
 
-All African countires and European countires were catagoreized into their correct continents. After this catagorization was completed, the average for schooling years in the UN, Europe and Africa was calculated. It was found that Africa averaged around 10 schooling years, while Europe averaged around 20. Europe averaged more schooling years than the mean of the world which was around 15. 
+All African countries and European countries were categorized into their correct continents. After this categorization was completed, the average for schooling years in the UN, Europe and Africa was calculated. It was found that Africa averaged around 10 schooling years, while Europe averaged around 20. Europe averaged more schooling years than the mean of the world which was around 15. 
 
 Africa was then increased to match the average European School years. Once the school years were updated a Time-series model was ran to predict life expectancy for Africa. 
 
-This model showed that when increasing the number of schooling years to match that of Europe, life expactancy greatly increased in Africa by around 6 years.
+This model showed that when increasing the number of schooling years to match that of Europe, life expectancy greatly increased in Africa by around 6 years.
 
-## Limitation and Next Steps,
+## Limitation and Next Steps
 
-Altough this project looked at many important variables, there were many not considered. The next project could look at the years 2016-2023. The data does not have to be limited to just UN countires. Other variables could be added such as access to healthcare, or post 2020 data on Covid's impact on life expectancy.
+Altough this project looked at many important variables, there were many not considered. The next project could look at the years 2016-2023. The data does not have to be limited to just UN countries. Other variables could be added such as access to healthcare, or post 2020 data on Covid's impact on life expectancy.
 
-Other area of study could include the diffrences in gender and life expectancy. Or how the ongoing wars in Ukraine and Isreal are impacting life expectancy. There were also columns in the water catagory that included access to water in hospitals, or personal hegine. These topics could be explored. 
+Other area of study could include the differences in gender and life expectancy. Or how the ongoing wars in Ukraine and Israel are impacting life expectancy. There were also columns in the water category that included access to water in hospitals, or personal hygeine. These topics could be explored. 
 
-More data on HIV/AIDs and other dieseases can also be analyzed.
-
-The next steps should be for the UN to provide further data for analuzaion. 
+More data on HIV/AIDs and other diseases can also be analyzed.
 
 
 # Repo Sturcture
