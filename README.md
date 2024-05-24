@@ -55,6 +55,88 @@ The bottom 5 countries with the lowest average life expectancy were Sierra Leone
 
 #  Data Preparation
 
+This dataset contained many missing data points. There were many dataset imported in and merged to correct missing or incorrect data. The following are datasets that were merged onto df_cleaned. The websites used to gather this data are further defined below. Each website had a database where the topic, countries and years could be selected. I gathered data from the years 2000-2015, for the 193 countries in the United Nations.
+
+## Water Availability
+Water was not originally in this dataset, but general knowledge indicates that water is crucial for survival. Using the UNICEF website UNICEF Water, drinking water and access were included in this analysis. To keep the data in line with the original dataset, the years 2000-2015 were imported.
+
+To merge this dataset with the df_cleaned dataset, several steps were completed. First, the water.csv data sheet was uploaded into the notebook. To do this, water.csv was saved into the desktop folder where the original project data was stored. Then, the folder path was defined, and the data was uploaded as water.csv.
+
+The next step was to adjust the names of the countries in the water.csv data. The water data had countries displayed as a three-letter abbreviation followed by a colon and then the capitalized country name. To match the df_cleaned data, the apply function was used to split each value in the ‘Country’ column. The first part was everything before the colon, and the second part was the country name without the abbreviation. The code then takes only the second part and removes the first part of the country name. For instance, the 'Country' column for water.csv originally had a country named "CRI : Costa Rica"; after the lambda function was applied, the country became "Costa Rica".
+
+To merge the water data with the original data, the 'country' column was changed to lowercase, and all spaces were replaced with underscores. "Costa Rica" was converted to "costa_rica". Adjustments to other water columns were needed before merging with the original dataset. The 'water_indicator' column was updated to remove the prefix before the word "Proportion". For instance, “WS_PPL_W-ALB of population using at least basic water" became "Proportion of population using at least basic water". Then underscores were added, and the column names were converted to lowercase.
+
+The pivot method was used to change the shape of the df_water_merged. During the pivot, the 'water_indicator' column became several columns: proportion_of_population_using_at_least_basic_drinking_water_services proportion_of_population_using_basic_drinking_water_services proportion_of_population_using_improved_drinking_water_sources proportion_of_population_using_improved_drinking_water_sources_available_when_needed proportion_of_population_using_improved_drinking_water_sources_located_on_premises proportion_of_population_using_limited_drinking_water_services proportion_of_population_using_non-piped_improved_drinking_water_sources proportion_of_population_using_of_improved_drinking_water_sources_free_from_faecal_and_priority_chemical_contamination proportion_of_population_using_piped_drinking_water_sources proportion_of_population_using_safely_managed_drinking_water_services proportion_of_population_using_surface_water proportion_of_population_using_unimproved_drinking_water_sources
+
+The index parameter was set to 'Country' and 'Year', the columns parameter was set to 'water_indicator', and the values parameter was set to 'rate_of_water'.
+
+Before the final merge, the country names were checked to ensure they matched the country names in df_cleaned. There were 10 countries with slightly different spellings, which were adjusted to match the correct country names. Additionally, some countries found in water.csv were not in df_cleaned and were removed. After final confirmation, a merge was completed to add the different water availability columns to df_cleaned. The df_water_pivot was merged into df_cleaned based on the ‘country’ and ‘year’ columns using a left join. This merge kept all the original columns in df_cleaned and added the new water columns.
+
+## Population
+The population column was missing many values. In oder to adjust this data from the WHO, was manually entered. The data replaced questionable and missing data from 2000-2015.
+
+## Vaccine Data
+After a thorough review of the original Hepatitis B, Polio, and Measles columns, it was evident that the dataset was missing a significant amount of data. To address this, data from UNICEF was used.
+
+The columns were deleted and replaced with data from UNICEF. To keep the data in line with the original dataset, the years 2000-2015 were imported. Several countries had different spellings or characteristics. The names were standardized to fit the original dataset.
+
+I defined the folder path and loaded the vaccines.csv file into my notebook. The file was saved in the same folder as the original project data on my desktop.
+
+Next, I needed to clean the 'Country' column in the vaccines.csv data to match the format in df_cleaned. The country names in vaccines.csv were displayed as three-letter abbreviations followed by a colon and the capitalized country name. I used the apply function to split each value in the 'Country' column, extracting only the country name and converting it to lowercase. For example, "CRI : Costa Rica" became "costa_rica".
+
+To ensure all combinations of countries and years from 2000 to 2015 were present, I created a DataFrame with these combinations and merged it with the original df_vaccines DataFrame. Any missing values were filled with 0. I verified the changes by displaying the merged DataFrame.
+
+For Afghanistan, I filtered the DataFrame to find the specific indicator 'IM_HEPBB' and extracted the years present. This helped me understand the vaccination data coverage for Afghanistan.
+
+I also created an updated DataFrame by iterating over each combination of country, year, and indicator to ensure all possible combinations were included. If a combination did not exist in the original DataFrame, I added a placeholder row with NaN values. The DataFrame was then sorted and the index reset to maintain order.
+
+To clean up the data further, I dropped the 'DATAFLOW' column and pivoted the DataFrame to convert indicators into separate columns. I renamed these columns to more concise names like 'hepatitis_b', 'polio', and 'measles'.
+
+I checked for any missing values in these columns, interpolated missing values using linear interpolation, and filled NaN values with 0 for Afghanistan specifically. This was done because there were no vaccines identified for Afghanistan for those years. I also excluded certain countries from the DataFrame and replaced spaces with underscores in the 'Country' column.
+
+After ensuring that country names matched between df_vaccines and df_cleaned, I renamed some country entries in df_vaccines for consistency. This involved mapping certain names to their counterparts in df_cleaned.
+
+I addressed missing vaccination data for Cabo Verde by manually adding values for hepatitis B, polio, and measles from 2000 to 2015. These values were assigned to a new DataFrame and concatenated with df_vaccines.
+
+Finally, I dropped the 'hepatitis_b', 'measles', and 'polio' columns from df_cleaned and merged it with the updated df_vaccines DataFrame on 'country' and 'year', ensuring that the merged DataFrame was properly structured and verified.
+
+## Adult Mortality
+After a thorough review of the original Hepatitis B, Polio, and Measles columns, it was evident that the dataset was missing a significant amount of data. To address this, data from UNICEF was used.
+
+The columns were deleted and replaced with data from UNICEF. To keep the data in line with the original dataset, the years 2000-2015 were imported. Several countries had different spellings or characteristics. The names were standardized to fit the original dataset.
+
+First, I defined the folder path and loaded the xmart.csv file into my notebook, skipping the first row and manually setting the column headers. This allowed me to format the dataset correctly from the start.
+
+Next, I removed special characters from the country names and converted them to lowercase to ensure consistency with the df_cleaned dataset. I then compared the unique country names from the original and modified DataFrames to identify any discrepancies.
+
+To address these discrepancies, I used a mapping dictionary to standardize the country names, ensuring they matched the conventions in df_cleaned. This included handling various country name variations like "guineabissau" to "guinea_bissau" and "new zealand" to "new_zealand".
+
+After mapping the country names, I rechecked for any remaining differences. I dropped countries like 'south_sudan' and 'somalia' from the modified DataFrame to match the original dataset. I also filtered out rows where the year was 2016, as they were outside the target range.
+
+For Afghanistan, I specifically compared the 'adult_mortality' values between df_cleaned and the modified dataset to ensure the new data accurately reflected the adult mortality rates.
+
+I then renamed columns in the modified dataset to match those in df_cleaned, ensuring smooth integration. This included renaming 'Country' to 'country' and 'Year' to 'year'. I dropped the old 'adult_mortality' column from df_cleaned and replaced it with the updated 'adult_mortality' data from the WHO dataset.
+
+Finally, I merged the two DataFrames on the 'country' and 'year' columns, ensuring all updated adult mortality data was included in df_cleaned. I verified the updated DataFrame to confirm the changes were correctly applied.
+
+## Underfive Mortality Rate
+After reviewing the Under Five Deaths column, I noticed that for a majority of countries, the data was incorrect. I replaced the erroneous values with data from UNICEF.
+
+First, I defined the folder path and loaded the underfive.csv file into my notebook. The file was saved in the same folder as the original project data on my desktop.
+
+Next, I selected specific columns from the loaded DataFrame: 'REF_AREAarea', 'TIME_PERIODperiod', and 'OBS_VALUE Value'. These columns contained the relevant data for geographic areas, time periods, and under-five mortality values.
+
+I printed the unique values and their counts for the 'REF_AREAarea' column to ensure that all country names were correctly loaded and to understand the distribution of the data.
+
+To prepare for merging with df_cleaned, I renamed the 'REF_AREAarea' column to 'country'. I then cleaned the country names by splitting at the colon, taking the last part, stripping any whitespace, converting them to lowercase, and replacing spaces with underscores. This ensured consistency with the country naming conventions in df_cleaned.
+
+I renamed the 'TIME_PERIODperiod' column to 'year' and the 'OBS_VALUEValue' column to 'underfive_deaths'. This made the column names more intuitive and aligned with the existing dataset.
+
+I compared the unique country names between the modified DataFrame and df_cleaned to identify any discrepancies. I found several differences, so I replaced specific country names in the modified DataFrame to match those in df_cleaned. This included changes like 'netherlands_(kingdom_of_the)' to 'netherlands' and 'north_macedonia' to 'the_former_yugoslav_republic_of_macedonia'.
+
+After verifying the changes, I dropped the 'under-five_deaths' column from df_cleaned to avoid any conflicts during the merge. Finally, I merged the modified DataFrame into df_cleaned on the 'country' and 'year' columns using a left join. This ensured that the under-five mortality data was accurately integrated into the existing dataset.
+
+## Life Expectancy
 The initial step in the data preparation was to search for NAN values, and place holders in the life expectancy column.
 
 There were 10 NaN values, upon further investigation as to what countries had these NaN values, Cook Islands, Dominica, Marshall Islands, Monaco, Nauru, Niue, Palau, Saint Kitts and Nevis, San Marino, and Tuvalu were identified. Further investigation into these countries, indicated substantial missing data in many columns for the year 2013. The decision was made to remove these 10 countries from further analysis for year 2013.
